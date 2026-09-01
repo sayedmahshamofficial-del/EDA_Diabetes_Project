@@ -1,0 +1,56 @@
+EDA FINDINGS SUMMARY
+==================================================
+
+Raw rows: 773 | After removing duplicates: 768 (5 duplicate rows removed)
+
+Missing / implausible-zero values found per column (before cleaning):
+Glucose            7
+BloodPressure     15
+SkinThickness     69
+Insulin          138
+BMI               17
+
+Missing values remaining after converting zeros to NaN (before imputation):
+Pregnancies                   0
+Glucose                       7
+BloodPressure                15
+SkinThickness                69
+Insulin                     138
+BMI                          17
+DiabetesPedigreeFunction      0
+Age                           0
+Outcome                       0
+
+Cleaning approach: implausible zeros in Glucose, BloodPressure, SkinThickness,
+Insulin, and BMI were treated as missing and imputed using the median value
+within each Outcome group (diabetic / non-diabetic), which preserves the
+distributional differences between the two groups better than a global median.
+
+Final dataset shape: (768, 10)
+
+Descriptive statistics:
+                          count        mean        std    min        25%       50%        75%     max
+Pregnancies               768.0    2.212240   1.481923   0.00    1.00000    2.0000    3.00000    8.00
+Glucose                   768.0  116.175781  20.854974  60.00  103.00000  116.0000  129.00000  178.00
+BloodPressure             768.0   79.932292  12.097091  40.00   72.00000   79.5000   88.00000  118.00
+SkinThickness             768.0   20.846354   7.859122   1.00   16.00000   20.0000   26.00000   45.00
+Insulin                   768.0   92.977865  47.244442   1.00   63.00000   86.0000  119.00000  283.00
+BMI                       768.0   24.475781   5.181067  15.00   20.97500   24.4000   28.00000   41.60
+DiabetesPedigreeFunction  768.0    0.390427   0.263366   0.08    0.18575    0.3285    0.53225    1.67
+Age                       768.0   50.968750  17.190749  21.00   36.00000   51.0000   66.00000   80.00
+Outcome                   768.0    0.059896   0.237448   0.00    0.00000    0.0000    0.00000    1.00
+
+Correlation of each feature with Outcome (diabetes), sorted by strength:
+Glucose                     0.271687
+BloodPressure               0.194773
+Age                         0.173257
+BMI                         0.128778
+Pregnancies                 0.093508
+SkinThickness               0.052446
+Insulin                     0.051488
+DiabetesPedigreeFunction   -0.031516
+
+Class balance:
+Outcome_Label
+No Diabetes    722
+Diabetes        46
